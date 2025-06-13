@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puskesmas Separi III - Pelayanan Kesehatan Masyarakat</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF; /* Clean Background */
+            color: #333333; /* Readability Text Color */
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        header {
+            background-color: #508D62; /* Primary Soft Green */
+            color: #FFFFFF;
+            padding: 16px 0;
+            border-bottom: 4px solid #3E704C; /* Darker Green Accent */
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 28px; /* H1 equivalent */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px; /* Specified logo height */
+            width: auto; /* Maintain aspect ratio */
+            margin-right: 16px;
+        }
+        
+        header .logo span {
+            font-size: 24px; /* Adjusted for better pairing with logo */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 24px;
+        }
+
+        nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px; /* Body Text */
+            font-weight: normal;
+            padding: 8px 0;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #EAF2EB; /* Lighter Green for hover/active text */
+            border-bottom: 2px solid #EAF2EB; /* Lighter Green for border */
+        }
+
+        /* Main Content */
+        main {
+            padding: 32px 0;
+        }
+
+        section {
+            margin-bottom: 32px;
+            padding: 24px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 22px; /* H2 */
+            font-weight: 600; /* Semi-bold */
+            color: #508D62; /* Primary Soft Green */
+            margin-top: 0;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #E0E0E0; /* Light Grey for subtle separation */
+            padding-bottom: 8px;
+        }
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .services-list li {
+            background-color: #EAF2EB; /* Very Light Soft Green */
+            color: #333333;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border-left: 4px solid #508D62; /* Primary Soft Green accent */
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .news-article-card {
+            background-color: #F9F9F9; /* Slightly off-white for cards */
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-article-card h3 {
+            font-size: 18px; /* H3 */
+            font-weight: 600;
+            color: #3E704C; /* Darker Green for titles */
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .news-article-card .date {
+            font-size: 14px; /* Small Text */
+            color: #666666;
+            margin-bottom: 12px;
+        }
+
+        .news-article-card .summary {
+            font-size: 15px; /* Body Text */
+            margin-bottom: 16px;
+            flex-grow: 1; /* Allows summary to take available space */
+        }
+
+        .news-article-card .read-more-link {
+            display: inline-block;
+            background-color: #508D62; /* Primary Soft Green */
+            color: #FFFFFF;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px; /* Button Text */
+            font-weight: 500; /* Medium */
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: auto; /* Pushes button to bottom of card */
+        }
+
+        .news-article-card .read-more-link:hover {
+            background-color: #3E704C; /* Darker Green for hover */
+        }
+
+        .contact-info p, .contact-form p {
+            font-size: 16px; /* Body Text */
+            margin-bottom: 12px;
+        }
+
+        .contact-info strong {
+            color: #508D62; /* Primary Soft Green */
+        }
+
+        /* Contact Form */
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600; /* Semi-bold */
+            font-size: 16px;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 24px); /* Full width minus padding */
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #CED4DA; /* Slightly darker calm border */
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: #508D62; /* Primary Soft Green on focus */
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(80, 141, 98, 0.25); /* RGB of #508D62 with alpha */
+        }
+
+        .contact-form button {
+            background-color: #508D62; /* Primary Soft Green for submit, was #FF5722 */
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px; /* Button Text */
+            font-weight: 500; /* Medium */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #3E704C; /* Darker Green for hover, was #E64A19 */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333333; /* Darker for footer */
+            color: #E0E0E0; /* Lighter text for contrast */
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 8px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #508D62; /* Primary Soft Green on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header .logo {
+                margin-bottom: 16px; 
+            }
+            
+            header .logo span { 
+                font-size: 22px; 
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px 12px; 
+                background-color: rgba(255, 255, 255, 0.1); 
+                border-radius: 4px;
+            }
+             nav ul li a:hover, nav ul li a.active {
+                border-bottom: none; 
+                background-color: rgba(80, 141, 98, 0.8); 
+                color: #FFFFFF; 
+             }
+            .news-grid {
+                grid-template-columns: 1fr; /* Stack news articles on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="D:\web pkm\Gambar\Logo PKM.png" alt="Logo Puskesmas Separi III">
+                <span>Puskesmas Separi III</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active" aria-label="Ke Halaman Utama">Beranda</a></li>
+                    <li><a href="#services" aria-label="Lihat Layanan Kami">Layanan</a></li>
+                    <li><a href="#news" aria-label="Lihat Berita Terbaru">Berita</a></li>
+                    <li><a href="#vision" aria-label="Ke Visi dan Misi">Visi dan Misi</a></li>
+                    <li><a href="#contact" aria-label="Hubungi Kami">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Home Section -->
+            <section id="home">
+                <h2>Selamat Datang di Website Puskesmas Separi III</h2>
+                <p>Kami berkomitmen untuk memberikan pelayanan kesehatan terbaik bagi masyarakat Separi III dan sekitarnya. Temukan informasi lengkap mengenai layanan kami, jadwal dokter, dan berbagai program kesehatan.</p>
+                <img src="D:\web pkm\Gambar\IMG_5323.jpg" alt="Gedung Puskesmas Separi III atau aktivitas pelayanan" style="width:100%; height:auto; border-radius: 8px; margin-top:16px;">
+            </section>
+            
+            <!-- Vision and Mission Section -->
+            <section id="vision">
+                <h2>Visi dan Misi</h2>
+                <p><strong>Visi:</strong> Menjadi Pusat Pelayanan Kesehatan Terpercaya.</p>
+                <p><strong>Misi:</strong> Pelayanan Prima Berbasis Komunitas.</p>
+            </section>
+        </div>
+    </main>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // Active link styling
+                document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
+            <!-- Services Offered Section -->
+            <section id="services">
+                <h2>Layanan Kami</h2>
+                <p>Puskesmas Separi III menyediakan berbagai layanan kesehatan untuk memenuhi kebutuhan Anda, antara lain:</p>
+                <ul class="services-list">
+                    <li>Pemeriksaan Umum</li>
+                    <li>Kesehatan Ibu dan Anak (KIA) & KB</li>
+                    <li>Imunisasi</li>
+                    <li>Poli Gigi</li>
+                    <li>Laboratorium Sederhana</li>
+                    <li>Konseling Gizi</li>
+                    <li>Pelayanan Gawat Darurat Dasar</li>
+                    <li>Surat Keterangan Sehat</li>
+                </ul>
+            </section>
+
+            <!-- News Section -->
+            <section id="news">
+                <h2>Berita Terbaru</h2>
+                <p>Ikuti perkembangan dan informasi terkini dari Puskesmas Separi III.</p>
+                <div class="news-grid">
+                    <div class="news-article-card">
+                        <h3>Sosialisasi Pentingnya PHBS di Lingkungan Rumah</h3>
+                        <p class="date">10 Juni 2025</p>
+                        <p class="summary">Puskesmas Separi III telah berhasil mengadakan sosialisasi mengenai Perilaku Hidup Bersih dan Sehat (PHBS) di lingkungan rumah bagi warga desa. Kegiatan ini bertujuan untuk meningkatkan kesadaran masyarakat akan pentingnya menjaga kebersihan demi kesehatan bersama.</p>
+                        <a href="#article-phbs" class="read-more-link">Baca Selengkapnya</a>
+                    </div>
+                    <div class="news-article-card">
+                        <h3>Jadwal Vaksinasi COVID-19 Booster Dosis Kedua</h3>
+                        <p class="date">08 Juni 2025</p>
+                        <p class="summary">Dapatkan vaksinasi booster dosis kedua Anda! Berikut adalah jadwal dan lokasi yang tersedia di wilayah kerja Puskesmas Separi III. Pastikan Anda membawa KTP dan kartu vaksin sebelumnya. Lindungi diri dan keluarga!</p>
+                        <a href="#article-covid-booster" class="read-more-link">Baca Selengkapnya</a>
+                    </div>
+                    <div class="news-article-card">
+                        <h3>Tips Menjaga Kesehatan Selama Musim Pancaroba</h3>
+                        <p class="date">05 Juni 2025</p>
+                        <p class="summary">Musim pancaroba seringkali membawa berbagai tantangan kesehatan. Dokter kami berbagi tips praktis untuk menjaga daya tahan tubuh, mulai dari pola makan sehat, istirahat cukup, hingga pentingnya aktivitas fisik ringan.</p>
+                        <a href="#article-musim-pancaroba" class="read-more-link">Baca Selengkapnya</a>
+                    </div>
+                     <div class="news-article-card">
+                        <h3>Peningkatan Layanan Poli Gigi Puskesmas</h3>
+                        <p class="date">02 Juni 2025</p>
+                        <p class="summary">Kabar gembira! Kini Poli Gigi Puskesmas Separi III hadir dengan beberapa peralatan baru dan peningkatan kualitas layanan untuk memastikan Anda mendapatkan perawatan gigi terbaik. Jadwalkan pemeriksaan Anda sekarang.</p>
+                        <a href="#article-poli-gigi" class="read-more-link">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Information Section -->
+            <section id="contact-info" class="contact-info">
+                <h2>Informasi Kontak</h2>
+                <p><strong>Alamat:</strong><br>
+                   Jl. Poros Separi III, Desa Separi, RT 05<br>
+                   Kecamatan Tenggarong Seberang, Kabupaten Kutai Kartanegara<br>
+                   Kalimantan Timur, Indonesia
+                </p>
+                <p><strong>Nomor Telepon:</strong> 085756713601</p>
+                <p><strong>Email:</strong> puskesmassepariiii@gmail.com</p>
+                <p><strong>Jam Operasional:</strong><br>
+                    Senin - Kamis: 07:45 - 12:45 WITA<br>
+                    Jumat: 07:45 - 10:15 WITA<br>
+                    Sabtu: 07:45 - 11:45 WITA<br>
+                    Minggu & Hari Libur Nasional: Tutup
+                </p>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section id="contact" class="contact-form">
+                <h2>Hubungi Kami</h2>
+                <p>Ada pertanyaan atau membutuhkan informasi lebih lanjut? Silakan isi formulir di bawah ini.</p>
+                <form action="#" method="post" aria-label="Formulir Kontak">
+                    <div>
+                        <label for="name">Nama Lengkap:</label>
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required aria-required="true">
+                    </div>
+                    <div>
+                        <label for="email">Alamat Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required aria-required="true">
+                    </div>
+                    <div>
+                        <label for="subject">Subjek:</label>
+                        <input type="text" id="subject" name="subject" placeholder="Subjek pesan Anda" required aria-required="true">
+                    </div>
+                    <div>
+                        <label for="message">Pesan:</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tuliskan pesan Anda di sini" required aria-required="true"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">Kirim Pesan</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> Puskesmas Separi III. Semua Hak Dilindungi.</p>
+            <p>
+                Jl. Poros Separi III, Desa Separi, Kec. Tenggarong Seberang, Kab. Kutai Kartanegara
+                <br>Telepon: (0541) 123-4567
+            </p>
+            <p>
+                <a href="#privacy-policy" aria-label="Kebijakan Privasi">Kebijakan Privasi</a> |
+                <a href="#terms-of-service" aria-label="Syarat dan Ketentuan">Syarat & Ketentuan</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                // For news article links, we might want different behavior (e.g., load a new page or modal)
+                // For this MVP, anchor links will scroll to the news section itself or placeholder sections.
+                if (targetId.startsWith("#article-")) { 
+                    // Placeholder: In a real app, this would navigate to a full article page or expand content.
+                    // For now, let's scroll to the top of the news section as an example if clicked from outside.
+                    const newsSection = document.querySelector('#news');
+                    if (newsSection) {
+                        newsSection.scrollIntoView({ behavior: 'smooth'});
+                    }
+                    // Optionally, highlight the "Berita" nav link
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                    document.querySelector('nav a[href="#news"]').classList.add('active');
+
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                     // Active link styling for main sections
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Handle form submission feedback (basic example)
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent actual submission for this example
+                alert('Terima kasih! Pesan Anda telah terkirim.');
+                this.reset(); // Clear the form
+            });
+        }
+    </script>
+
+</body>
+</html>
